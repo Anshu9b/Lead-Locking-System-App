@@ -4,5 +4,5 @@
 1.MFC Dialog MSDN Docs read.<br/>
 2.Steps needed in VS Code to setup a CDialog for First authentication page.
 3.Control Management button added
-# Day 2- (22/06/24)
+## Day 2- (22/06/24)
 
