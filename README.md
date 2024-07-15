@@ -239,14 +239,14 @@ A combo box consists of a list box combined with either a static control or edit
 - Initialization
 CBN_SELCHANGE	ON_CBN_SELCHANGE( <id>, <memberFxn> )	The selection in the list box of a combo box is about to be changed as a result of the user either clicking in the list box or changing the selection by using the arrow keys.
 ![image](https://github.com/user-attachments/assets/5383bceb-a9e2-40bb-a7e4-650628216f26)
-- Static Text
-A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static control normally takes no input and provides no output.
 
-### 
+### COleDateTime m_DateTime;
+### COleDateTime m_DateTime2;
 
-Date & Time Picker
 The date and time picker control (CDateTimeCtrl) implements an intuitive and recognizable method of entering or selecting a specific date. The main interface of the control is similar in functionality to a combo box. However, if the user expands the control, a month calendar control appears (by default), allowing the user to specify a particular date. When a date is chosen, the month calendar control automatically disappears.
 
-  
-
+### Static Text
+A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static control normally takes no input and provides no output.
+### Phone Number - implementation 
+   
  
