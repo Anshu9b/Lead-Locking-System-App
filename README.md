@@ -249,4 +249,34 @@ The date and time picker control (CDateTimeCtrl) implements an intuitive and rec
 A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static control normally takes no input and provides no output.
 ### Phone Number - implementation 
    
- 
+ Client URL, or just curl, is a command-line tool for transferring data using various network protocols. It is commonly used by developers to test various applications build on top of HTTP.
+
+That said, curl itself is just a wrapper around libcurl. The library is written in C and has well documented API.
+
+C++
+If you use libcurl from a C++ program, it is important to remember that you cannot pass in a string object where libcurl expects a string. It has to be a null terminated C string. Usually you can make this happen with the c_str() method.
+
+For example, keep the URL in a string object and set that in the handle:
+std::string url("https://example.com/");
+curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+//
+Before you do anything libcurl related in your program, you should do a global libcurl initialize call with curl_global_init(). This is necessary because some underlying libraries that libcurl might be using need a call ahead to get setup and initialized properly.
+
+- curl_global_init() is, unfortunately, not thread safe, so you must ensure that you only do it once and never simultaneously with another call. It initializes global state so you should only call it once, and once your program is completely done using libcurl you can call curl_global_cleanup() to free and clean up the associated global resources the init call allocated.
+
+- libcurl is built to handle the situation where you skip the curl_global_init() call, but it does so by calling it itself instead (if you did not do it before any actual file transfer starts) and it then uses its own defaults
+Easy handle
+The fundamentals you need to learn with libcurl:
+
+First you create an "easy handle", which is your handle to a transfer, really:
+
+- CURL *easy_handle = curl_easy_init();
+You then set options in that handle to control the upcoming transfer. This example sets the URL:
+
+/* set URL to operate on */
+- res = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://example.com/");
+If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
+
+![image](https://github.com/user-attachments/assets/a0ba6c4d-b1f8-4d1e-8abe-7491e00a7074)
+
