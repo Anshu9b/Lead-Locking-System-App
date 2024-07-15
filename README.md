@@ -273,10 +273,27 @@ First you create an "easy handle", which is your handle to a transfer, really:
 
 - CURL *easy_handle = curl_easy_init();
 You then set options in that handle to control the upcoming transfer. This example sets the URL:
+- ![image](https://github.com/user-attachments/assets/98911a02-5ec2-45d6-9e7f-84acfe1d4a9c)
+- Eg from code 
+- ![image](https://github.com/user-attachments/assets/87d108c2-22a2-4f03-95ca-f146503a5036)
+
+
 
 /* set URL to operate on */
 - res = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://example.com/");
 If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
 
-![image](https://github.com/user-attachments/assets/a0ba6c4d-b1f8-4d1e-8abe-7491e00a7074)
+- ![image](https://github.com/user-attachments/assets/a0ba6c4d-b1f8-4d1e-8abe-7491e00a7074)
+
+- ![image](https://github.com/user-attachments/assets/f18d5519-7b8d-469d-868e-87a285f6ec84)
+- ![image](https://github.com/user-attachments/assets/007cb123-ba1e-4ba7-aab8-5abe70665768)
+- ![image](https://github.com/user-attachments/assets/0092e79e-e02c-494a-ae82-cd5090ac9d6a)
+- ![image](https://github.com/user-attachments/assets/ffa2a49b-e4f0-4910-9550-2788cf7c553c)
+- ![image](https://github.com/user-attachments/assets/7d82bf2b-1f22-4906-9ae7-01ec15a41146)
+- ![image](https://github.com/user-attachments/assets/2f9dfdf3-bd15-48a5-a30f-a8eeb086c3b7)
+- ![image](https://github.com/user-attachments/assets/bd66bdd0-a3f9-46d0-906b-6cac09b04b0c)
+![image](https://github.com/user-attachments/assets/a34e4d52-14d4-4f3e-b7e9-aa8b2189eeb2)
+![image](https://github.com/user-attachments/assets/f4763600-2c6d-4b02-838d-ae555b4729ad)
+
+
 
