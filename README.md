@@ -182,7 +182,7 @@ res->next(): Advances the cursor to the next row in the result set. If a row exi
 catch (sql::SQLException& e): Catches any sql::SQLException that might be thrown during the execution of the SQL query.
 -Error Message: Formats an error message with the exception details and displays it using AfxMessageBox.
 -Return False: If an exception occurs, the function returns false.
-Summary
+### Summary
 -Connect to Database: Attempts to connect to the database. Returns false if the connection fails.
 -Prepare Statement: Prepares an SQL statement to select the user based on username and password.
 -Set Parameters: Sets the username and password parameters in the prepared statement.
@@ -238,21 +238,64 @@ A combo box consists of a list box combined with either a static control or edit
 
 - Initialization
 CBN_SELCHANGE	ON_CBN_SELCHANGE( <id>, <memberFxn> )	The selection in the list box of a combo box is about to be changed as a result of the user either clicking in the list box or changing the selection by using the arrow keys.
-![image](https://github.com/user-attachments/assets/5383bceb-a9e2-40bb-a7e4-650628216f26)
+- Explanation of :
+  int selectedIndex = m_Reseller.GetCurSel();
+  CString selectedText;
+  m_Reseller.GetLBText(selectedIndex, selectedText);
+
+
+-Explanation of : 
+CComboBox* m_SolidCAMSalesperson = (CComboBox*)GetDlgItem(IDC_COMBO_SALESPERSON);
+
+- Explanation of :
+  m_SolidCAMSalesperson.GetCurSel() == CB_ERR
+  
+![image](https://github.com/user-attachments/assets/5383bceb-a9e2-40bb-a7e4-
+650628216f26)
+
+## Keynotes 
+- What the full statement means : const std::regex pattern(
+	R"((\w+)(\.{1}\w+)*@(\w+)(\.(\w+))+)"/'
+- \w+:
+\w: Matches any word character (alphanumeric character plus underscore).
++: Matches one or more of the preceding element.
+(\w+): Captures one or more word characters. This corresponds to the local part of the email before any dots.
+(\.{1}\w+)*:
+\.: Matches a literal dot (.).
+{1}: Matches exactly one occurrence of the preceding element.
+\w+: Matches one or more word characters following the dot.
+(\.{1}\w+)*: This entire group matches zero or more occurrences of a dot followed by one or more word characters. This allows for email addresses with dots in the local part (e.g., john.doe).
+@:
+Matches the literal @ symbol, separating the local part from the domain part of the email.
+(\w+):
+Matches one or more word characters. This corresponds to the initial part of the domain name.
+(\.(\w+))+:
+\.: Matches a literal dot.
+(\w+): Matches one or more word characters. This captures the top-level domain (e.g., com, net).
+(\.(\w+))+: This group matches one or more occurrences of a dot followed by one or more word characters. This allows for multiple levels in the domain (e.g., example.co.uk).
+
 
 ### COleDateTime m_DateTime;
 ### COleDateTime m_DateTime2;
 
-The date and time picker control (CDateTimeCtrl) implements an intuitive and recognizable method of entering or selecting a specific date. The main interface of the control is similar in functionality to a combo box. However, if the user expands the control, a month calendar control appears (by default), allowing the user to specify a particular date. When a date is chosen, the month calendar control automatically disappears.
+-The date and time picker control (CDateTimeCtrl) implements an intuitive and recognizable method of entering or selecting a specific date. The main interface of the control is similar in functionality to a combo box. However, if the user expands the control, a month calendar control appears (by default), allowing the user to specify a particular date. When a date is chosen, the month calendar control automatically disappears.
+-  This line means : m_DateTime.GetStatus() == COleDateTime::invalid ?
+- ![image](https://github.com/user-attachments/assets/7735f625-ff2e-4fb2-b011-395e5577d440)
+
 
 ### Static Text
 A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static control normally takes no input and provides no output.
 ### Phone Number - implementation 
+- Not able to take all the values and then check if total digit is 10 or not.
+- So implement function- IsPhonenoValiud() and check whenever a new digit is pressed.
+- ![image](https://github.com/user-attachments/assets/e687da81-b980-4b6f-8dcd-e9213c11a9c8)
 
 
 
-
-## CURL LIBRARY Implementaion
+## GST Validation - We need to validate using GST Validate in schema and do lookup in that.
+- Perform GET request on it.
+- So we need to use client url- curl libraray.
+### CURL LIBRARY Implementaion
    
 -Client URL, or just curl, is a command-line tool for transferring data using v arious network protocols. It is commonly used by developers to test various applications build on top of HTTP.
 
@@ -298,18 +341,57 @@ std::string apiEndpoint = ss.str();
 
 - res = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://example.com/");
 If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
-- curl_easy_init(): Initializes the CURL library for making HTTP requests (curl is a handle to the CURL session).
+  ### STEP1- CURL* curl= pointer
+  ### STEP2 - CURLcode res= variable to store code as ok or not ok result of operation
+  ### STEP3- std:: string readbuffer -> string to store read data from the api and 
+   store as buffer.
+  ### STEP4- curl= curl_easy_init() function ->  Initializes the CURL library for 
+   making HTTP requests (curl is a handle to the CURL session).
   ## curl_easy_setopt()- consists of 3 parameters
 - curl_easy_setopt
-curl_easy_setopt is a function from the libcurl library used to set various options for a CURL session handle. This function allows you to specify details about the transfer, such as the URL to fetch, how to handle the response data, timeouts, and more.
+ curl_easy_setopt is a function from the libcurl library used to set various options for a CURL session handle. This function allows you to specify details about the transfer, such as the URL to fetch, how to handle the response data, timeouts, and more.
 CURLcode curl_easy_setopt(CURL *handle, CURLoption option, parameter);
 handle: The CURL session handle obtained from curl_easy_init.
 option: The specific option to set, defined by the CURLoption enum.
 parameter: The value to set for the specified option, which can vary in type depending on the option.
 - curl_easy_setopt(): Sets various options for the CURL session:
-- CURLOPT_URL: Sets the URL to fetch.
+- CURLOPT_URL: Sets the URL to fetch. 1. CURLOPT_URL
+- Purpose: Sets the URL for the HTTP request.
+- curl_easy_setopt(curl, CURLOPT_URL, apiEndpointStr.c_str());
+- curl: The CURL session handle.
+- CURLOPT_URL: Option to set the URL to fetch.
+- apiEndpointStr.c_str(): The URL as a null-terminated C string.
+ -Explanation: This option specifies the URL to which the request should be sent. In 
+  your case, apiEndpointStr contains the complete URL constructed from the API key and 
+  GST number.
 - CURLOPT_WRITEFUNCTION: Sets a callback function (WriteCallback) to handle the response data.
+  ### Eg- Calculate the Total Size of the Data Received
+size_t newLength = size * nmemb;
+size: The size of each data element (typically 1 byte for char data).
+nmemb: The number of data elements received.
+newLength: The total size of the data received in bytes. This is calculated by multiplying size by nmemb.
+Append the Data to the String
+try {
+    s->append((char*)contents, newLength);
+}
+catch (std::bad_alloc& e) {
+    return 0;
+}
+s: Pointer to a std::string passed through the userp parameter.
+(char)contents*: Casts the contents pointer to a char pointer, which is the appropriate type for appending to a std::string.
+newLength: Specifies the number of bytes to append.
+*s->append((char)contents, newLength)**: Appends the received data to the std::string object.
+try-catch block: Catches std::bad_alloc exceptions that might be thrown if memory allocation fails while appending data. If an exception occurs, the function returns 0, indicating an error.
+Return the Number of Bytes Handled
+return newLength;
+return newLength: Returns the number of bytes successfully appended to the std::string. This indicates to CURL how many bytes were handled. Returning a value less than newLength would indicate a failure to handle all the data, which CURL would treat as an error.
+Summary
+Calculate the size: size * nmemb computes the total size of the data block received.
+Append to string: The data block is appended to the std::string object pointed to by s.
+Handle exceptions: If memory allocation fails (std::bad_alloc), the function returns 0 to indicate failure.
+Return handled bytes: The function returns the number of bytes successfully appended.
 - CURLOPT_WRITEDATA: Passes &readBuffer to receive the response data.
+  ### STEP 4- res= curl_easy_perform (curl)
 - curl_easy_perform(): Performs the HTTP GET request. If an error occurs (res != CURLE_OK), it displays an error message using AfxMessageBox and returns false
 
 - ![image](https://github.com/user-attachments/assets/a0ba6c4d-b1f8-4d1e-8abe-7491e00a7074)
@@ -323,6 +405,34 @@ parameter: The value to set for the specified option, which can vary in type dep
 - ![image](https://github.com/user-attachments/assets/bd66bdd0-a3f9-46d0-906b-6cac09b04b0c)
 ![image](https://github.com/user-attachments/assets/a34e4d52-14d4-4f3e-b7e9-aa8b2189eeb2)
 ![image](https://github.com/user-attachments/assets/f4763600-2c6d-4b02-838d-ae555b4729ad)
+## Nlohmann Library About- Why used?
+- Used in C++ code for parsing the schema from since C++ doesnt have its native library for parsing.
+- Need to configure the json.hpp library which is a single include header file in project configuration
+- About:
+  ![image](https://github.com/user-attachments/assets/ce72def6-761d-4799-a5b7-ab142bedb4bd)
+- ![image](https://github.com/user-attachments/assets/be3ddf4d-f19a-4b98-b0da-70f1a8bfc9ef)
+  ### STEPS OF PARSING :
+- step1: Parse the JSON Response
+nlohmann::json jsonResponse = nlohmann::json::parse(readBuffer);
+readBuffer: This is a std::string containing the raw JSON response data received from the HTTP request.
+nlohmann::json::parse(readBuffer): This function parses the readBuffer string into a nlohmann::json object. If the JSON data is malformed, this function will throw an exception.
+- step2: Check for Specific Fields in the JSON
+if (jsonResponse.contains("data") && jsonResponse["data"].contains("gstin")) {
+jsonResponse.contains("data"): This checks if the parsed JSON object contains a key named "data".
+jsonResponse["data"].contains("gstin"): If the "data" key exists, this further checks if the "data" object contains a key named "gstin".
+This double check ensures that the response has the necessary structure and the specific field you're interested in.
+- step3: Extract the GST Number
+std::string gstNumber = jsonResponse["data"]["gstin"];
+jsonResponse["data"]["gstin"]: Accesses the value associated with the key "gstin" inside the "data" object. This value is expected to be a string containing the GST number.
+std::string gstNumber: Stores the extracted GST number in a std::string variable.
 
+## Json Parsing 
+![image](https://github.com/user-attachments/assets/b9efe3e3-9b5b-4bf5-9cd7-165e6f72633e)
+Eg in code:
+![image](https://github.com/user-attachments/assets/ab165aa3-3b21-468b-b92f-65703a59fbfa)
+
+### Keynotes
+- What will happen if curl is not initialized ?
+- 
 
 
