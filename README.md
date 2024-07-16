@@ -276,12 +276,40 @@ You then set options in that handle to control the upcoming transfer. This examp
 - ![image](https://github.com/user-attachments/assets/98911a02-5ec2-45d6-9e7f-84acfe1d4a9c)
 - Eg from code 
 - ![image](https://github.com/user-attachments/assets/87d108c2-22a2-4f03-95ca-f146503a5036)
+- CString: CString is a string class provided by MFC that simplifies string manipulation. It handles memory management automatically, making it easier to work with strings compared to raw character arrays.
+
+CString::Format: The Format method of CString works similarly to the printf function in C. It allows you to create formatted strings by inserting variables into a format string. Here, apiEndpoint.Format constructs the complete API endpoint URL by inserting apiKey and m_GSTNumber into the format string.
+- Compatibility: Using _T ensures that the code can be compiled for both Unicode and ANSI builds without modification.
+Ease of Use: CString provides convenient methods for string manipulation, reducing the likelihood of errors compared to manually managing character arrays.
+Readability: The Format method makes it easy to see how the URL is constructed, improving code readability.
+Alternative Approach without _T and CString::Format
+If you are working exclusively with standard C++ strings and don't need MFC compatibility, you could use std::string and std::stringstream:
+
+cpp
+Copy code
+#include <string>
+#include <sstream>
+
+std::string apiKey = "f4f459b60c3351483570f552eaa3cb79";
+std::string m_GSTNumber = "someGSTNumber"; // Assume m_GSTNumber is a std::string
+
+std::stringstream ss;
+ss << "http://sheet.gstincheck.co.in/check/" << apiKey << "/" << m_GSTNumber;
+std::string apiEndpoint = ss.str();
 
 
 
 /* set URL to operate on */
 - res = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://example.com/");
 If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
+curl_easy_init(): Initializes the CURL library for making HTTP requests (curl is a handle to the CURL session).
+
+curl_easy_setopt(): Sets various options for the CURL session:
+
+CURLOPT_URL: Sets the URL to fetch.
+CURLOPT_WRITEFUNCTION: Sets a callback function (WriteCallback) to handle the response data.
+CURLOPT_WRITEDATA: Passes &readBuffer to receive the response data.
+curl_easy_perform(): Performs the HTTP GET request. If an error occurs (res != CURLE_OK), it displays an error message using AfxMessageBox and returns false
 
 - ![image](https://github.com/user-attachments/assets/a0ba6c4d-b1f8-4d1e-8abe-7491e00a7074)
 
