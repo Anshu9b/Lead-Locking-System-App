@@ -248,45 +248,44 @@ The date and time picker control (CDateTimeCtrl) implements an intuitive and rec
 ### Static Text
 A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static control normally takes no input and provides no output.
 ### Phone Number - implementation 
+
+
+
+
+## CURL LIBRARY Implementaion
    
- Client URL, or just curl, is a command-line tool for transferring data using various network protocols. It is commonly used by developers to test various applications build on top of HTTP.
+-Client URL, or just curl, is a command-line tool for transferring data using v arious network protocols. It is commonly used by developers to test various applications build on top of HTTP.
 
-That said, curl itself is just a wrapper around libcurl. The library is written in C and has well documented API.
+-That said, curl itself is just a wrapper around libcurl. The library is written in C and has well documented API.
 
-C++
-If you use libcurl from a C++ program, it is important to remember that you cannot pass in a string object where libcurl expects a string. It has to be a null terminated C string. Usually you can make this happen with the c_str() method.
+## Imp
+If you use libcurl from a C++ program, it is important to remember that you cannot pass in a string object where libcurl expects a string. ## It has to be a null terminated C string. Usually you can make this happen with the c_str() method.
 
 For example, keep the URL in a string object and set that in the handle:
 std::string url("https://example.com/");
 curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
-//
-Before you do anything libcurl related in your program, you should do a global libcurl initialize call with curl_global_init(). This is necessary because some underlying libraries that libcurl might be using need a call ahead to get setup and initialized properly.
+## STEPS TO DO CURL OPERATION 
+- Before you do anything libcurl related in your program, you should do a global libcurl initialize call with curl_global_init(). This is necessary because some underlying libraries that libcurl might be using need a call ahead to get setup and initialized properly.
 
 - curl_global_init() is, unfortunately, not thread safe, so you must ensure that you only do it once and never simultaneously with another call. It initializes global state so you should only call it once, and once your program is completely done using libcurl you can call curl_global_cleanup() to free and clean up the associated global resources the init call allocated.
 
 - libcurl is built to handle the situation where you skip the curl_global_init() call, but it does so by calling it itself instead (if you did not do it before any actual file transfer starts) and it then uses its own defaults
-Easy handle
-The fundamentals you need to learn with libcurl:
-
-First you create an "easy handle", which is your handle to a transfer, really:
-
+- Easy handle.The fundamentals you need to learn with libcurl.First you create an "easy handle", which is your handle to a transfer, really:
 - CURL *easy_handle = curl_easy_init();
-You then set options in that handle to control the upcoming transfer. This example sets the URL:
+- You then set options in that handle to control the upcoming transfer. This example sets the URL:
 - ![image](https://github.com/user-attachments/assets/98911a02-5ec2-45d6-9e7f-84acfe1d4a9c)
 - Eg from code 
 - ![image](https://github.com/user-attachments/assets/87d108c2-22a2-4f03-95ca-f146503a5036)
 - CString: CString is a string class provided by MFC that simplifies string manipulation. It handles memory management automatically, making it easier to work with strings compared to raw character arrays.
 
-CString::Format: The Format method of CString works similarly to the printf function in C. It allows you to create formatted strings by inserting variables into a format string. Here, apiEndpoint.Format constructs the complete API endpoint URL by inserting apiKey and m_GSTNumber into the format string.
+- CString::Format: The Format method of CString works similarly to the printf function in C. It allows you to create formatted strings by inserting variables into a format string. Here, apiEndpoint.Format constructs the complete API endpoint URL by inserting apiKey and m_GSTNumber into the format string.
 - Compatibility: Using _T ensures that the code can be compiled for both Unicode and ANSI builds without modification.
-Ease of Use: CString provides convenient methods for string manipulation, reducing the likelihood of errors compared to manually managing character arrays.
-Readability: The Format method makes it easy to see how the URL is constructed, improving code readability.
-Alternative Approach without _T and CString::Format
+- Ease of Use: CString provides convenient methods for string manipulation, reducing the likelihood of errors compared to manually managing character arrays.
+- Readability: The Format method makes it easy to see how the URL is constructed, improving code readability.
+- Alternative Approach without _T and CString::Format
 If you are working exclusively with standard C++ strings and don't need MFC compatibility, you could use std::string and std::stringstream:
 
-cpp
-Copy code
 #include <string>
 #include <sstream>
 
@@ -297,19 +296,21 @@ std::stringstream ss;
 ss << "http://sheet.gstincheck.co.in/check/" << apiKey << "/" << m_GSTNumber;
 std::string apiEndpoint = ss.str();
 
-
-
-/* set URL to operate on */
 - res = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://example.com/");
 If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
-curl_easy_init(): Initializes the CURL library for making HTTP requests (curl is a handle to the CURL session).
-
-curl_easy_setopt(): Sets various options for the CURL session:
-
-CURLOPT_URL: Sets the URL to fetch.
-CURLOPT_WRITEFUNCTION: Sets a callback function (WriteCallback) to handle the response data.
-CURLOPT_WRITEDATA: Passes &readBuffer to receive the response data.
-curl_easy_perform(): Performs the HTTP GET request. If an error occurs (res != CURLE_OK), it displays an error message using AfxMessageBox and returns false
+- curl_easy_init(): Initializes the CURL library for making HTTP requests (curl is a handle to the CURL session).
+  ## curl_easy_setopt()- consists of 3 parameters
+- curl_easy_setopt
+curl_easy_setopt is a function from the libcurl library used to set various options for a CURL session handle. This function allows you to specify details about the transfer, such as the URL to fetch, how to handle the response data, timeouts, and more.
+CURLcode curl_easy_setopt(CURL *handle, CURLoption option, parameter);
+handle: The CURL session handle obtained from curl_easy_init.
+option: The specific option to set, defined by the CURLoption enum.
+parameter: The value to set for the specified option, which can vary in type depending on the option.
+- curl_easy_setopt(): Sets various options for the CURL session:
+- CURLOPT_URL: Sets the URL to fetch.
+- CURLOPT_WRITEFUNCTION: Sets a callback function (WriteCallback) to handle the response data.
+- CURLOPT_WRITEDATA: Passes &readBuffer to receive the response data.
+- curl_easy_perform(): Performs the HTTP GET request. If an error occurs (res != CURLE_OK), it displays an error message using AfxMessageBox and returns false
 
 - ![image](https://github.com/user-attachments/assets/a0ba6c4d-b1f8-4d1e-8abe-7491e00a7074)
 
