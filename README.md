@@ -38,7 +38,7 @@
 5. CURL (Client URL) 8.8.0 library [https://curl.se/download.html]
 6. Nlohmann Json -( 3 party library to generate schema in C++) [https://github.com/nlohmann/json/tree/develop/single_include/nlohmann]
 
-✅## Sprint
+ ## Sprint✅
 ## Day 1 -(21/06/24)
 1. MFC Dialog MSDN Docs read.<br/>
 2. Steps needed in VS Code to setup a CDialog for First authentication page.
