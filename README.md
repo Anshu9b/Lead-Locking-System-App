@@ -65,7 +65,6 @@
 To create a modal dialog box, call either of the two public constructors declared in CDialog. Next, call the dialog object's DoModal member function to display the dialog box and manage interaction with it until the user chooses OK or Cancel. This management by DoModal is what makes the dialog box modal. For modal dialog boxes, DoModal loads the dialog resource.
 # Usage in Lead Locking form 
 ![image](https://github.com/user-attachments/assets/2128da38-cad0-4040-8b52-4cceacbf6749)
-
 4.Worked on further occured errors 
 
 ## Day 3- (23/06/24)
@@ -94,7 +93,7 @@ To create a modal dialog box, call either of the two public constructors declare
  -Usage: Use this to determine the length of the text before retrieving it, which can help in allocating sufficient buffer size.
 - Usage of CString , CStringA, std:: string: CString:
  1.CString :
- -  Type: A class provided by MFC.
+ - Type: A class provided by MFC.
 - Character Set: Can be either ANSI or Unicode depending on the project settings.
 - Usage: Commonly used in MFC applications for string manipulations, providing extensive functionality for handling strings.
 - eg: CString str = _T("Hello, World!");
@@ -114,7 +113,7 @@ To create a modal dialog box, call either of the two public constructors declare
 2. Downloaded and setup the MYSQL Workbench.
 3. Reasearched on connection OF DATABASE with Mfc as frontend and C++ as backend.
 4. Further resolved the errors
-5. 
+   
 ## Key Learnings
 - Mysql Database connection can be done for MFC based application with C++ with Myql connector library
 - MySQL Connector/C++ is a MySQL database connector for C++. It lets you develop C++ and 
@@ -224,8 +223,7 @@ try {
 - res.reset(pstmt->executeQuery());: Executes the query and stores the result in res.
 return res->next();
 res->next(): Advances the cursor to the next row in the result set. If a row exists, it returns true, indicating the user was found. If no rows are returned, it returns false.
-### Step 3: Exception Handling
-} catch (sql::SQLException& e) {
+- catch (sql::SQLException& e) {
     CString errorMessage;
     errorMessage.Format(_T("Query execution failed: %S"), e.what());
     AfxMessageBox(errorMessage);
@@ -420,7 +418,7 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
  ss << "http://sheet.gstincheck.co.in/check/" << apiKey << "/" << m_GSTNumber;
  ::string apiEndpoint = ss.str();
 - res = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://example.com/");
- If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
+- If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
   ### STEP1- CURL* curl= pointer
   ### STEP2 - CURLcode res= variable to store code as ok or not ok result of operation
   ### STEP3- std:: string readbuffer -> string to store read data from the api and 
@@ -428,8 +426,7 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
   ### STEP4- curl= curl_easy_init() function ->  Initializes the CURL library for 
    making HTTP requests (curl is a handle to the CURL session).
   ## curl_easy_setopt()- consists of 3 parameters
-- curl_easy_setopt
- curl_easy_setopt is a function from the libcurl library used to set various options for a CURL session handle. This function allows you to specify details about the transfer, such as the URL to fetch, 
+- curl_easy_setopt: function from the libcurl library used to set various options for a CURL session handle. This function allows you to specify details about the transfer, such as the URL to fetch, 
  how to handle the response data, timeouts, and more.
  CURLcode curl_easy_setopt(CURL *handle, CURLoption option, parameter);
  handle: The CURL session handle obtained from curl_easy_init.
@@ -518,6 +515,5 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
 
 ### Keynotes
 - What will happen if curl easy handler is not initialized ?
-- 
 
 
