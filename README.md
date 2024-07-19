@@ -364,6 +364,8 @@ res->next(): Advances the cursor to the next row in the result set. If a row exi
 - null: Indicates that the COleDateTime object is null (not initialized).
 - COleDateTime::invalid: This is a constant defined in the COleDateTime class to represent an invalid date and time status.
 - ![image](https://github.com/user-attachments/assets/7735f625-ff2e-4fb2-b011-395e5577d440)
+- gmt cONVERSION 
+- To convert the gmtime_s result to Indian Standard Time (IST) and then insert it into your database, you need to adjust the struct tm by adding 5 hours and 30 minutes.
 
 ### Static Text
 A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static control normally takes no input and provides no output.
@@ -516,4 +518,12 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
 ### Keynotes
 - What will happen if curl easy handler is not initialized ?
 
+### New Changes 
+
+-	Make gst no validated in database and duplicate msg to show.
+-	Admin button to export in csv
+-	Phone no msg- one time.
+-	Datetime stored in database without user able to see.
+-	Username should have email form.
+-	Button of upload bussinesscard 
 
