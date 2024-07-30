@@ -183,9 +183,9 @@ The function ConnectToDatabase aims to establish a connection to a MySQL databas
 ## Day 9- (29/06/24)
 1. Successfully connected database connection with user login dialog.
 2. Implemented the Edge cases function ->
-  ![image](https://github.com/user-attachments/assets/f20d0fcc-8b5c-44a8-a61a-37534425238a)
+ -  ![image](https://github.com/user-attachments/assets/f20d0fcc-8b5c-44a8-a61a-37534425238a)
 3. OnClickedButtonSubmit()
-  ![image](https://github.com/user-attachments/assets/6ac7a404-9cbb-4d6c-a556-1b647c2e0f51)
+- ![image](https://github.com/user-attachments/assets/6ac7a404-9cbb-4d6c-a556-1b647c2e0f51)
 
 ## Purpose
 - The function DoesUserExist checks if a user with the specified username and password exists in the database.
@@ -381,7 +381,7 @@ try {
 - Easy handle.The fundamentals you need to learn with libcurl.First you create an "easy handle", which is your handle to a transfer, really:
 - CURL *easy_handle = curl_easy_init();
 - You then set options in that handle to control the upcoming transfer. This example sets the URL:
-- ![image](https://github.com/user-attachments/assets/98911a02-5ec2-45d6-9e7f-84acfe1d4a9c)
+- ![image](https://github.com/user-attachments/assets/d4973659-5230-4771-8a5f-f56ef773a3e4)
 - Eg from code 
 - ![image](https://github.com/user-attachments/assets/87d108c2-22a2-4f03-95ca-f146503a5036)
 - CString: CString is a string class provided by MFC that simplifies string manipulation. It handles memory management automatically, making it easier to work with strings compared to raw character arrays.
@@ -392,13 +392,13 @@ try {
 - Readability: The Format method makes it easy to see how the URL is constructed, improving code readability.
 - Alternative Approach without _T and CString::Format
 - If you are working exclusively with standard C++ strings and don't need MFC compatibility, you could use std::string and std::stringstream:
- #include <string>
- #include <sstream>
- std::string apiKey = "f4f459b60c3351483570f552eaa3cb79";
- std::string m_GSTNumber = "someGSTNumber"; // Assume m_GSTNumber is a std::string
- std::stringstream ss;
- ss << "http://sheet.gstincheck.co.in/check/" << apiKey << "/" << m_GSTNumber;
- ::string apiEndpoint = ss.str();
+ - #include <string>
+ - #include <sstream>
+ - std::string apiKey = "f4f459b60c3351483570f552eaa3cb79";
+ - std::string m_GSTNumber = "someGSTNumber"; // Assume m_GSTNumber is a std::string
+ - std::stringstream ss;
+ - ss << "http://sheet.gstincheck.co.in/check/" << apiKey << "/" << m_GSTNumber;
+ - ::string apiEndpoint = ss.str();
 - res = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://example.com/");
 - If curl_easy_setopt() returns CURLE_OK, we know it stored the option fine.
   ### STEP1- CURL* curl= pointer
@@ -446,34 +446,36 @@ try {
 - try-catch block: Catches std::bad_alloc exceptions that might be thrown if memory allocation fails while appending data. If an exception occurs, the function returns 0, indicating an error.
 - Return the Number of Bytes Handled
 - return newLength: Returns the number of bytes successfully appended to the std::string. This indicates to CURL how many bytes were handled. Returning a value less than newLength would indicate a failure 
- to handle all the data, which CURL would treat as an error.
+  to handle all the data, which CURL would treat as an error.
 - Calculate the size: size * nmemb computes the total size of the data block received.
 - Append to string: The data block is appended to the std::string object pointed to by s.
 - Handle exceptions: If memory allocation fails (std::bad_alloc), the function returns 0 to indicate failure.
 - Return handled bytes: The function returns the number of bytes successfully appended.
 - CURLOPT_WRITEDATA: Passes &readBuffer to receive the response data.
   
-  ### STEP 4- res= curl_easy_perform (curl)
+  ### STEP 5- res= curl_easy_perform (curl)
   
 - curl_easy_perform(): Performs the HTTP GET request. If an error occurs (res != CURLE_OK), it displays an error message using AfxMessageBox and returns false.
   
- ![image](https://github.com/user-attachments/assets/a0ba6c4d-b1f8-4d1e-8abe-7491e00a7074)
- ![image](https://github.com/user-attachments/assets/f18d5519-7b8d-469d-868e-87a285f6ec84)
- ![image](https://github.com/user-attachments/assets/007cb123-ba1e-4ba7-aab8-5abe70665768)
- ![image](https://github.com/user-attachments/assets/0092e79e-e02c-494a-ae82-cd5090ac9d6a)
- ![image](https://github.com/user-attachments/assets/ffa2a49b-e4f0-4910-9550-2788cf7c553c)
- ![image](https://github.com/user-attachments/assets/7d82bf2b-1f22-4906-9ae7-01ec15a41146)
- ![image](https://github.com/user-attachments/assets/2f9dfdf3-bd15-48a5-a30f-a8eeb086c3b7)
- ![image](https://github.com/user-attachments/assets/bd66bdd0-a3f9-46d0-906b-6cac09b04b0c)
- ![image](https://github.com/user-attachments/assets/a34e4d52-14d4-4f3e-b7e9-aa8b2189eeb2)
- ![image](https://github.com/user-attachments/assets/f4763600-2c6d-4b02-838d-ae555b4729ad)
+- ![image](https://github.com/user-attachments/assets/17d981f5-76a7-421b-b260-b809987da0d0)
+- ![image](https://github.com/user-attachments/assets/c6259032-8f1e-4979-be92-80ce83215817)
+- ![image](https://github.com/user-attachments/assets/27c3d679-61cf-4585-8da2-2500a9871d3f)
+- ![image](https://github.com/user-attachments/assets/4aaeb5b9-d435-469c-b636-dc5aed7d8ec9)
+- ![image](https://github.com/user-attachments/assets/460523f0-3d23-4f1d-9c22-8aff9ef39713)
+- ![image](https://github.com/user-attachments/assets/1d8cf0f0-dcbd-410e-b927-f322a3850905)
+- ![image](https://github.com/user-attachments/assets/aadf8b68-fe12-4c47-8469-92861083110b)
+- ![image](https://github.com/user-attachments/assets/402014df-d1a1-4143-a9dc-3addab64b625)
+- ![image](https://github.com/user-attachments/assets/39d2c8f1-807d-4d7b-811c-3eab2c42a3a9)
+- ![image](https://github.com/user-attachments/assets/444b5e3b-e279-4cee-b1ae-9bd8b7c20c2b)
+
   
 ## Nlohmann Library About- Why used?
 - Used in C++ code for parsing the schema from since C++ doesnt have its native library for parsing.
 - Need to configure the json.hpp library which is a single include header file in project configuration
 - About:
-- ![image](https://github.com/user-attachments/assets/ce72def6-761d-4799-a5b7-ab142bedb4bd)
-- ![image](https://github.com/user-attachments/assets/be3ddf4d-f19a-4b98-b0da-70f1a8bfc9ef)
+- ![image](https://github.com/user-attachments/assets/83f1478c-9078-4748-95b4-567955b6cc4a)
+- ![image](https://github.com/user-attachments/assets/2be51054-3cb7-45ee-87cf-77b5f4c83de6)
+
   
   ### STEPS OF PARSING :
 - step1: Parse the JSON Response
