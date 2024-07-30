@@ -64,8 +64,8 @@
 # Creating Modal Dialog boxes in MFC
 To create a modal dialog box, call either of the two public constructors declared in CDialog. Next, call the dialog object's DoModal member function to display the dialog box and manage interaction with it until the user chooses OK or Cancel. This management by DoModal is what makes the dialog box modal. For modal dialog boxes, DoModal loads the dialog resource.
 # Usage in Lead Locking form 
-![image](https://github.com/user-attachments/assets/2128da38-cad0-4040-8b52-4cceacbf6749)
-4.Worked on further occured errors 
+- ![image](https://github.com/user-attachments/assets/2128da38-cad0-4040-8b52-4cceacbf6749)
+- 
 
 ## Day 3- (23/06/24)
 1. Warpped up the user_login dialog box.
@@ -146,8 +146,7 @@ The function ConnectToDatabase aims to establish a connection to a MySQL databas
 
 - bool CUserRegistrationSystem2Dlg::ConnectToDatabase() {
 - Return Type: bool - Indicates whether the connection to the database was successful (true) or not (false).
-- Class Scope: CUserRegistrationSystem2Dlg:: - This function is a member of the:
-  CUserRegistrationSystem2Dlg class.
+- Class Scope: CUserRegistrationSystem2Dlg:: - This function is a member of the: CUserRegistrationSystem2Dlg class.
 
 ## Variable Declaration and Initialization
 
@@ -209,20 +208,21 @@ try {
     pstmt.reset(con->prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?"));
 - pstmt: A unique pointer to a PreparedStatement object for executing parameterized SQL queries.
 - res: A unique pointer to a ResultSet object to store the query results.
+  ## Imp
 - con->prepareStatement(...): Prepares the SQL statement with placeholders (?) for the username and password parameters to prevent SQL injection.
 - Setting Parameters and Executing the Query
-    CStringA usernameA(Username);
-    CStringA passwordA(Password);
-    pstmt->setString(1, std::string(usernameA));
-    pstmt->setString(2, std::string(passwordA));
-    res.reset(pstmt->executeQuery());
+- CStringA usernameA(Username);
+- CStringA passwordA(Password);
+- pstmt->setString(1, std::string(usernameA));
+- pstmt->setString(2, std::string(passwordA));
+- res.reset(pstmt->executeQuery());
 - CStringA usernameA(Username);: Converts Username (assumed to be a CString member variable) to CStringA (ANSI string).
 - CStringA passwordA(Password);: Converts Password (assumed to be a CString member variable) to CStringA (ANSI string).
 - pstmt->setString(1, std::string(usernameA));: Sets the first parameter (username) of the prepared statement.
 - pstmt->setString(2, std::string(passwordA));: Sets the second parameter (password) of the prepared statement.
 - res.reset(pstmt->executeQuery());: Executes the query and stores the result in res.
-return res->next();
-res->next(): Advances the cursor to the next row in the result set. If a row exists, it returns true, indicating the user was found. If no rows are returned, it returns false.
+- return res->next();
+- res->next(): Advances the cursor to the next row in the result set. If a row exists, it returns true, indicating the user was found. If no rows are returned, it returns false.
 - catch (sql::SQLException& e) {
     CString errorMessage;
     errorMessage.Format(_T("Query execution failed: %S"), e.what());
@@ -230,8 +230,9 @@ res->next(): Advances the cursor to the next row in the result set. If a row exi
     return false;
 }
 - catch (sql::SQLException& e): Catches any sql::SQLException that might be thrown during the execution of the SQL query.
--Error Message: Formats an error message with the exception details and displays it using AfxMessageBox.
--Return False: If an exception occurs, the function returns false.
+- Error Message: Formats an error message with the exception details and displays it using AfxMessageBox.
+- Return False: If an exception occurs, the function returns false.
+  
 ### Summary
 -Connect to Database: Attempts to connect to the database. Returns false if the connection fails.
 -Prepare Statement: Prepares an SQL statement to select the user based on username and password.
@@ -240,7 +241,7 @@ res->next(): Advances the cursor to the next row in the result set. If a row exi
 -Return Result: Returns true if a user is found, false otherwise.
 -Exception Handling: Catches any SQL exceptions, displays an error message, and returns false.
 - This function effectively handles database connectivity and query execution, ensuring that the application can verify user credentials securely and robustly.
-- 
+  
 ## Day 10- (30/06/24)
 - Implementation of CreateAccount() function for inserting into database new user.
  ![image](https://github.com/user-attachments/assets/907690ba-1556-4c3e-9f28-3de242d87ede)
@@ -321,8 +322,7 @@ res->next(): Advances the cursor to the next row in the result set. If a row exi
 - GetCurSel(): This method retrieves the index of the currently selected item in the combo box. If no item is selected, it returns CB_ERR.
 - CB_ERR: This is a constant defined in the Windows API, which signifies an error or that no item is selected in the combo box.
 - m_SolidCAMSalesperson->GetCurSel() == CB_ERR: This expression checks if no item is selected in the combo box. If GetCurSel() returns CB_ERR, it means that no item is currently selected.
- ![image](https://github.com/user-attachments/assets/5383bceb-a9e2-40bb-a7e4-
- 650628216f26)
+  ![image](https://github.com/user-attachments/assets/5383bceb-a9e2-40bb-a7e4-650628216f26)
 
  ## Keynotes 
 - What the full statement means : const std::regex pattern(
@@ -344,31 +344,11 @@ res->next(): Advances the cursor to the next row in the result set. If a row exi
 2. (\w+): Matches one or more word characters. This captures the top-level domain (e.g., com, net).
 3. (\.(\w+))+: This group matches one or more occurrences of a dot followed by one or more word characters. This allows for multiple levels in the domain (e.g., example.co.uk).
 
-### DateTime Implementation: 
 
-- The date and time picker control (CDateTimeCtrl) implements an intuitive and recognizable method of entering or selecting a specific date. The main interface of the control is similar in functionality 
-  to a combo box. However, if the user expands the control, a month calendar control appears (by default), allowing the user to specify a particular date. When a date is chosen, the month calendar control 
-  automatically disappears.
-- ![image](https://github.com/user-attachments/assets/88d572dd-2d33-4bb9-9254-bbbf7c297b7e)
-- Explanation of the code below:
-  1. Casting the Notification Data: The function receives a pointer to an NMHDR structure, which contains general information about the notification. It casts this pointer to a more specific type 
-    (LPNMDATETIMECHANGE) to access the date-time change details.
-  2. Retrieving the Date-Time Picker Control: It uses GetDlgItem to retrieve a pointer to the date-time picker control identified by IDC_DATETIMEPICKER and casts this pointer to CDateTimeCtrl*.
-  3. Getting the Selected Date-Time: The function calls GetTime on the CDateTimeCtrl object to retrieve the currently selected date and time, storing it in the member variable m_DateTime.
-  4. Setting the Result: Finally, it sets *pResult to 0, indicating that the message has been processed successfully.
-- This line means : m_DateTime.GetStatus() == COleDateTime::invalid (Explanation:):
-- m_DateTime:  his is an instance of the COleDateTime class. COleDateTime is a class provided by MFC for handling date and time values.
-- GetStatus(): This is a member function of the COleDateTime class. It returns the current status of the COleDateTime object, which can be one of the following:
-- valid: Indicates that the COleDateTime object contains a valid date and time.
-- invalid: Indicates that the COleDateTime object contains an invalid date and time.
-- null: Indicates that the COleDateTime object is null (not initialized).
-- COleDateTime::invalid: This is a constant defined in the COleDateTime class to represent an invalid date and time status.
-- ![image](https://github.com/user-attachments/assets/7735f625-ff2e-4fb2-b011-395e5577d440)
-- gmt cONVERSION 
-- To convert the gmtime_s result to Indian Standard Time (IST) and then insert it into your database, you need to adjust the struct tm by adding 5 hours and 30 minutes.
 
 ### Static Text
-A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static control normally takes no input and provides no output.
+-A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It is represented by CStatic class. It can be used to label, box, or separateother controls. A static 
+ control normally takes no input and provides no output.
 
 ### Phone Number - implementation 
 - Not able to take all the values and then check if total digit is 10 or not.
@@ -430,10 +410,10 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
   ## curl_easy_setopt()- consists of 3 parameters
 - curl_easy_setopt: function from the libcurl library used to set various options for a CURL session handle. This function allows you to specify details about the transfer, such as the URL to fetch, 
  how to handle the response data, timeouts, and more.
- CURLcode curl_easy_setopt(CURL *handle, CURLoption option, parameter);
- handle: The CURL session handle obtained from curl_easy_init.
- option: The specific option to set, defined by the CURLoption enum.
- parameter: The value to set for the specified option, which can vary in type depending on the option.
+-  CURLcode curl_easy_setopt(CURL *handle, CURLoption option, parameter);
+- handle: The CURL session handle obtained from curl_easy_init.
+- option: The specific option to set, defined by the CURLoption enum.
+- parameter: The value to set for the specified option, which can vary in type depending on the option.
 - curl_easy_setopt(): Sets various options for the CURL session:
 - CURLOPT_URL: Sets the URL to fetch. 1. CURLOPT_URL
 - Purpose: Sets the URL for the HTTP request.
@@ -492,14 +472,14 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
 - Used in C++ code for parsing the schema from since C++ doesnt have its native library for parsing.
 - Need to configure the json.hpp library which is a single include header file in project configuration
 - About:
-  ![image](https://github.com/user-attachments/assets/ce72def6-761d-4799-a5b7-ab142bedb4bd)
+- ![image](https://github.com/user-attachments/assets/ce72def6-761d-4799-a5b7-ab142bedb4bd)
 - ![image](https://github.com/user-attachments/assets/be3ddf4d-f19a-4b98-b0da-70f1a8bfc9ef)
   
   ### STEPS OF PARSING :
 - step1: Parse the JSON Response
- nlohmann::json jsonResponse = nlohmann::json::parse(readBuffer);
- readBuffer: This is a std::string containing the raw JSON response data received from the HTTP request.
- nlohmann::json::parse(readBuffer): This function parses the readBuffer string into a nlohmann::json object. If the JSON data is malformed, this function will throw an exception.
+  nlohmann::json jsonResponse = nlohmann::json::parse(readBuffer);
+  readBuffer: This is a std::string containing the raw JSON response data received from the HTTP request.
+  nlohmann::json::parse(readBuffer): This function parses the readBuffer string into a nlohmann::json object. If the JSON data is malformed, this function will throw an exception.
 - step2: Check for Specific Fields in the JSON
  if (jsonResponse.contains("data") && jsonResponse["data"].contains("gstin")) {
  jsonResponse.contains("data"): This checks if the parsed JSON object contains a key named "data".
@@ -518,7 +498,7 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
 ### Keynotes
 - What will happen if curl easy handler is not initialized ?
 
-### New Changes 
+### New Updates  
 
 -	Make gst no validated in database and duplicate msg to show.
 -	Admin button to export in csv
