@@ -525,5 +525,6 @@ A static control displays a text string, box, rectangle, icon, cursor, bitmap, o
 -	Phone no msg- one time.
 -	Datetime stored in database without user able to see.
 -	Username should have email form.
--	Button of upload bussinesscard 
+-	Button of upload bussinesscard
+## 
 
