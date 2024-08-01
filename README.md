@@ -508,5 +508,48 @@ try {
 -	Datetime stored in database without user able to see.
 -	Username should have email form.
 -	Button of upload bussinesscard
-## 
+## Assumptions in Time 
+-Assume the current date and time is July 26, 2024, at 14:35 : 00 UTC.
+- time(&rawTime); :
+- rawTime might be assigned a value like 1722027300 (the exact number of seconds since the Unix epoch to this date and time).
+- gmtime_s(&timeInfo, &rawTime); :
+- gmtime_s converts 1722027300 to a tm structure with the following values :
+- timeInfo.tm_year = 124 (years since 1900, so 124 + 1900 = 2024)
+- timeInfo.tm_mon = 6 (months since January, so 6 = July)
+- timeInfo.tm_mday = 26 (day of the month)
+- timeInfo.tm_hour = 14 (hours since midnight)
+- timeInfo.tm_min = 35 (minutes after the hour)
+- timeInfo.tm_sec = 0 (seconds after the minute)*/
+- time_t rawTime;
+- Declares a variable rawTime of type time_t which is typically an alias for a numerical type (usually an integer) representing the number of seconds since the Unix epoch (00:00:00 UTC on 1 January 1970).
+-  time(&rawTime);: The time function gets the current calendar time and stores it as a time_t object in rawTime. Essentially, it captures the current time in seconds since the Unix epoch.
+- struct tm timeInfo;: Declares a variable timeInfo of type struct tm, which is a structure that holds the broken-down time (year, month, day, hour, minute, second, etc.).
+- gmtime_s(&timeInfo, &rawTime); : The gmtime_s function converts the time_t value pointed to by rawTime to a tm structure representing the corresponding UTC time.The result is stored in the timeInfo structure.
 
+## OnbuttonclockUploadCsv
+//std::unique_ptr<sql::PreparedStatement>: This creates a unique pointer to a sql::PreparedStatement object.Using a unique pointer ensures that the prepared statement will be automatically destroyed when it goes out of scope, preventing memory leaks.
+//	con->prepareStatement("SELECT * FROM leadlocking") : This method prepares an SQL statement to select all columns from the leadlocking table.
+//	con : This is a pointer to an active database connection.
+//	prepareStatement : This method is used to create a precompiled SQL statement.The statement can be executed multiple times more efficiently than executing the same query string each time.
+//	"SELECT * FROM leadlocking" : This SQL query selects all records from the leadlocking table.You can adjust this query as needed to select specific columns or filter records.
+//	Executing the SQL Query
+//	std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+//  std::unique_ptr<sql::ResultSet>: This creates a unique pointer to a sql::ResultSet object, which holds the results of the query.
+//	pstmt->executeQuery() : This method executes the prepared SQL statement and returns a result set containing the data retrieved by the query.
+//	Opening the CSV File
+//	cpp
+//	Copy code
+//	std::ofstream csvFile(filePath);
+//  std::ofstream: This is an output file stream used to create files and write information to them.
+//	csvFile(filePath) : This opens a file at the specified filePath for writing.If the file does not exist, it will be created.If the file does exist, its contents will be overwritten.
+//	filePath : This parameter is the path to the file where the CSV data will be written.
+//	Explanation of Purpose
+//  This loop iterates over each row in the result set returned by the SQL query.
+//  res->next() advances to the next row and returns true if there is another row available.If there are no more rows, it returns false and the loop exits.
+//  res->getString("ColumnName") is a method provided by the MySQL Connector/C++ library that retrieves the value of the specified column in the current row as a std::string.
+//  For example, res->getString("ProspectName") retrieves the value of the "ProspectName" column in the current row and converts it to a std::string
+// Compatibility with std::ofstream:
+
+	/*Writing data to a file using std::ofstream is straightforward with std::string as it supports the << operator for writing strings to a file.
+   	The std::ofstream object csvFile is used to write data to the CSV file.Data Handling in C++:
+   	Using std::string to hold the values of the columns allows easy manipulation and formatting of */
