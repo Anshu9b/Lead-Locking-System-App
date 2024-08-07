@@ -60,6 +60,8 @@
 - Create a dialog class.
 - Connect the dialog resource's controls to message handlers in the dialog class.
 - Add data members associated with the dialog box's controls and to specify dialog data exchange and dialog data validations for the controls.
+- ![image](https://github.com/user-attachments/assets/eb56dc4f-f471-4b72-ab0b-33ce2b0c4761)
+
 
 # Creating Modal Dialog boxes in MFC
 To create a modal dialog box, call either of the two public constructors declared in CDialog. Next, call the dialog object's DoModal member function to display the dialog box and manage interaction with it until the user chooses OK or Cancel. This management by DoModal is what makes the dialog box modal. For modal dialog boxes, DoModal loads the dialog resource.
